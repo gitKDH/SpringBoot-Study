@@ -1,1 +1,1 @@
-# SpringBoot-Study
+# 스프링부트 웹 프로젝트
