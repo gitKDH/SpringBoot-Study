@@ -9,6 +9,8 @@
     <form action="/guestbook/modify" method="post">
 
       <input type="hidden" name="page" th:value="${requestDTO.page}">
+      <input type="hidden" name="type" th:value="${requestDTO.type}">
+      <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
 
     <div class="form-group">
       <label>Gno</label>
@@ -43,8 +45,6 @@
     <button type="button" class="btn btn-info listBtn">List</button>
     <button type="button" class="btn btn-danger removeBtn">Remove</button>
 
-    $
-
     <script th:inline="javascript">
     var actionForm= $("form");
     $(" .removeBtn").click(function(){
@@ -65,17 +65,22 @@
               .submit();
     });
 
-    $(".btn-list").click(function(){
-      var pageInfo = $("input[name= 'page']");
+    $(".listBtn").click(function(){
 
-      actionForm.empty(); //form태그의모든내용을지우고 actionForm.append(pageInfo); //목록페이지이동에필요한내용을다시추가 actionForm
-      actionForm.append(pageInfo);
+      var page = $("input[name='page']");
+      var type = $("input[name='type']");
+      var keyword = $("input[name='keyword']");
+
+      actionForm.append(page);
+      actionForm.append(type);
+      actionForm.append(keyword);
+
       actionForm
               .attr("action","/guestbook/list")
               .attr("method","get");
-      console.log(actionForm.html());
-      actionForm.submit(); //확인후주석해제
-    });
+
+      actionForm.submit();
+    })
     </script>
   </th:block>
 </th:block>
